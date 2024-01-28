@@ -1,23 +1,32 @@
 const express=require("express");
 const Parse=require("body-parser");
 const req=require("request");
+const bodyParser = require("body-parser");
 const app=express();
 
+let items=[];
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
-app.use(Parse.urlencoded({extended : true}));
+app.use(bodyParser.urlencoded({extended : true}));
 
 app.get("/",(req,res)=>{
-    res.sendFile(__dirname + "/index.ejs");
+    let today=new Date();
 
+    let options = {
+        weekday:"long",
+        day:"numeric",
+        month:"long",
+    };
+    let day=today.toLocaleDateString("en-US",options);
 
+    
+    res.render("list", {currdate:day ,newitems:items});
 });
 
 app.post("/",(req,res)=>{
-    let firnam=req.body.Firstname;
-    let lasnam=req.body.Lastname;
-    let email=req.body.email;
-    console.log(firnam, lasnam, email);
+    let item=req.body.newItem;
+    items.push(item);
+    res.redirect("/");
 });
 
 app.listen(3000,() => 
