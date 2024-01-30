@@ -3,20 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/todo_style.css">
     <title>To-Do List</title>
 </head>
 <body>
+    <div class="box" id="heading">
     <h1><%= currdate %></h1>
-    <ul>
-        <%for(let i=0;i<newitems.length;i++){%>
-            <li><%=newitems[i]%></li>
-        <%}%>
+    </div>
+    
+    <div class="box">
+        <%for (let i=0;i<newitems.length;i++) { %>
+            <div class="item">
+                <input type="checkbox">
+                <p><%= newitems[i] %></p>
+            </div>
+            <%}%>
+    
 
-    </ul>
-    <form class="" action="/" method="post">
-        <input type="text" name="newItem">
-        <button type="submit" name="button">add</button>
+    <form class="item" action="/" method="post">
+        <input type="text" name="newItem" placeholder="new item..">
+        <button type="submit" name="button">+</button>
 
     </form>
+    </div>
 </body>
 </html>

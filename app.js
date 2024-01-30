@@ -4,7 +4,7 @@ const req=require("request");
 const bodyParser = require("body-parser");
 const app=express();
 
-let items=[];
+let items=["play","cricket"];
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended : true}));
